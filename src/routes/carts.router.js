@@ -3,8 +3,10 @@ const { cartsModel } = require("../models/carts.model")
 
 const router = Router()
 
+
 //get
 router.get("/", async (req, res) => {
+
     try {
         let carts = await cartsModel.find()
         res.send({ result: "success", payload: carts })
@@ -15,12 +17,12 @@ router.get("/", async (req, res) => {
 
 //post
 router.post("/", async (req, res) => {
-    let { producto, precio } = req.body
+    let { descripcion, quantity, total } = req.body
 
-    if (!producto || !precio) {
-        res.send({ status: "error", error: "Error al ingreso" })
+    if (!descripcion || !quantity || !total) {
+        res.send({ status: "error", error: "Faltan parametros" })
     }
-    let result = await cartsModel.create({ producto, precio })
+    let result = await cartsModel.create({ descripcion, quantity, total })
     res.send({ result: "success", payload: result })
 });
 
@@ -29,8 +31,8 @@ router.put("/:cid", async (req, res) => {
     let { cid } = req.params
 
     let cartsToReplace = req.body
-    if (!cartsToReplace.producto || !cartsToReplace.precio) {
-        res.send({ status: "error", error: "Producto No Disponible" })
+    if (!cartsToReplace.descripcion || !cartsToReplace.quantity || !cartsToReplace.total) {
+        res.send({ status: "error", error: "Faltan parametros" })
     }
 
     let result = await cartsModel.updateOne({_id: cid}, cartsToReplace)

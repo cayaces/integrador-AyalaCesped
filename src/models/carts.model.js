@@ -6,13 +6,12 @@ const cartsCollection = "carts"
 
 //aqui es schema
 const cartsSchema = new mongoose.Schema({
-    producto: { type: String, max: 20, required: true },
-    precio: { type: String, max: 10, required: true }
+    descripcion: { type: String, required: true },
+    quantity: { type: Number, required: true },
+    total: { type: Number, required: true }
 })
 
 //exportacion de mongoose
-//cartsSchema.plugin(mongoosePaginate)
-
 const cartsModel = mongoose.model(cartsCollection, cartsSchema)
 
 module.exports = { cartsModel }

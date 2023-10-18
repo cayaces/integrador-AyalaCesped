@@ -6,12 +6,11 @@ const messagesCollection = "messages"
 
 //aqui es schema
 const messagesSchema = new mongoose.Schema({
-    email: { type: String, max: 20, required: true },
-    mensaje: { type: String, max: 10, required: true }
+    user: { type: String, max: 200, required: true },
+    message: { type: String, max: 100, required: true }
 })
 
 //exportacion de mongoose
-//messagesSchema.plugin(mongoosePaginate)
 
 const messagesModel = mongoose.model(messagesCollection, messagesSchema)
 

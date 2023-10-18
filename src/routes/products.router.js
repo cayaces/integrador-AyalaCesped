@@ -5,6 +5,7 @@ const router = Router()
 
 //get
 router.get("/", async (req, res) => {
+
     try {
         let products = await productsModel.find()
         res.send({ result: "success", payload: products })
@@ -15,12 +16,12 @@ router.get("/", async (req, res) => {
 
 //post
 router.post("/", async (req, res) => {
-    let { producto, precio, stock, categoria } = req.body
+    let { descripcion, precio, stock, imagen } = req.body
 
-    if (!producto || !precio || !stock || !categoria) {
-        res.send({ status: "error", error: "Debe ingresar los datos correspondientes" })
+    if (!descripcion || !precio || !stock || !imagen) {
+        res.send({ status: "error", error: "Error en la escritura" })
     }
-    let result = await productsModel.create({ producto, precio, stock, categoria })
+    let result = await productsModel.create({ descripcion, precio, stock, imagen })
     res.send({ result: "success", payload: result })
 });
 
@@ -29,8 +30,8 @@ router.put("/:pid", async (req, res) => {
     let { pid } = req.params
 
     let productsToReplace = req.body
-    if (!productsToReplace.producto || !productsToReplace.precio || !productsToReplace.stock || !productsToReplace.categoria) {
-        res.send({ status: "error", error: "no existes datos" })
+    if (!productsToReplace.descripcion || !productsToReplace.precio || !productsToReplace.stock || !productsToReplace.imagen) {
+        res.send({ status: "error", error: "Error" })
     }
 
     let result = await productsModel.updateOne({_id: pid}, productsToReplace)

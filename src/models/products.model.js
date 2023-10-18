@@ -6,14 +6,13 @@ const productsCollection = "products"
 
 //aqui el schema
 const productsSchema = new mongoose.Schema({
-    producto: { type: String, max: 20, required: true },
-    precio: { type: Number, max: 10, required: true },
-    stock: { type: Number, max: 50, required: true },
-    categoria: { type: String, max: 50, required: true}
+    descripcion: { type: String, max: 1000, required: true },
+    precio: { type: Number, required: true },
+    stock: { type: Number, required: true },
+    imagen: { type: String, max: 1000, required: true}
 })
 
 //exportacion de mongoose
-//productsSchema.plugin(mongoosePaginate)
 
 const productsModel = mongoose.model(productsCollection, productsSchema)
 
