@@ -1,15 +1,13 @@
 const express = require("express")
 const { engine } = require("express-handlebars")
 const path = require("path")
-//const { __dirname } = require("./utils")
 const { default: mongoose } = require("mongoose")
 const productsRouter = require("./routes/products.router")
 const cartsRouter = require("./routes/carts.router")
 const messagesRouter = require("./routes/messages.router")
 const uploadRouter = require("./routes/upload.router")
-//const handlebars = require("express-handlebars")
-//const multer = require('multer');
-//const viewsRouter = require("./routes/views.router.js")
+const handlebars = require("express-handlebars")
+const multer = require('multer');
 
 const app = express();
 const PORT = 8080;
